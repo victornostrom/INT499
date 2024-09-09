@@ -3,7 +3,8 @@ import React from 'react';
 function About() {
   return (
     <div>
-      <h2>About Page - Coming Soon!</h2>
+      <h2>About Page</h2>
+      <p>This page will be built in Week 5.</p>
     </div>
   );
 }

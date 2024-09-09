@@ -3,7 +3,8 @@ import React from 'react';
 function Cart() {
   return (
     <div>
-      <h2>Cart Page - Coming Soon!</h2>
+      <h2>Cart Page</h2>
+      <p>This page will be built in Week 4.</p>
     </div>
   );
 }

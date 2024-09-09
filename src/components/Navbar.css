@@ -1,29 +1,28 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+nav {
   background-color: #333;
   padding: 10px;
 }
 
-.logo {
-  color: white;
-  font-size: 24px;
-  text-transform: uppercase;
-}
-
-.nav-links {
-  list-style: none;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 20px;
+  justify-content: space-around;
 }
 
-.nav-links a {
+li {
+  display: inline;
+}
+
+a {
   color: white;
   text-decoration: none;
+  padding: 10px 20px;
   font-size: 18px;
 }
 
-.nav-links a:hover {
-  text-decoration: underline;
+a:hover {
+  background-color: #575757;
+  border-radius: 5px;
 }
