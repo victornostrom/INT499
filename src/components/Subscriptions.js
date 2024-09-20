@@ -1,6 +1,6 @@
 import React from 'react';
 import list from './data';
-import './Subscriptions.css'; // Ensure this path is correct
+import './Subscriptions.css';
 
 function Subscriptions({ addToCart, cartItems, removeItem }) {
     const [error, setError] = React.useState('');

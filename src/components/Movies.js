@@ -1,52 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const API_KEY = 'YOUR_TMDB_API_KEY';  // Replace with your TMDB API key
+const API_KEY = '3134058ff337c539ac9fda0112beec19';
 
 function Movies() {
     const [query, setQuery] = useState('');
-    const [movies, setMovies] = useState(() => {
-        // Initialize movies state from localStorage, if available
-        const savedMovies = localStorage.getItem('movies');
-        return savedMovies ? JSON.parse(savedMovies) : [];
-    });
-    const [error, setError] = useState('');
+    const [movies, setMovies] = useState([]);
 
-    // Function to search movies
     const searchMovies = async (e) => {
         e.preventDefault();
-        if (!query.trim()) return;  // Do nothing if the search query is empty
+        if (!query.trim()) return;
 
         const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
         try {
             const res = await fetch(url);
             const data = await res.json();
-
-            if (data.results) {
-                setMovies(data.results);  // Set movies to state
-                localStorage.setItem('movies', JSON.stringify(data.results));  // Save results to localStorage
-                setError('');  // Clear any previous error message
-            } else {
-                setMovies([]);
-                localStorage.removeItem('movies');  // Clear localStorage if no movies are found
-                setError('No movies found.');
-            }
+            setMovies(data.results || []);
         } catch (error) {
             console.error("Error fetching the movies:", error);
-            setError('Error fetching movie data.');
         }
     };
-
-    // Clear localStorage when query changes (Optional)
-    useEffect(() => {
-        if (!query) {
-            localStorage.removeItem('movies');  // Remove saved data if search query is cleared
-        }
-    }, [query]);
 
     return (
         <div>
             <h2>Movies Page</h2>
-
             {/* Movie Search Form */}
             <form onSubmit={searchMovies}>
                 <input
@@ -58,21 +34,32 @@ function Movies() {
                 <button type="submit">Search</button>
             </form>
 
-            {/* Display Errors */}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-
             {/* Display Search Results */}
             <div className="movie-results">
                 {movies && movies.length > 0 ? (
                     movies.map(movie => (
-                        <div key={movie.id}>
+                        <div key={movie.id} className="movie-item">
                             <h3>{movie.title}</h3>
                             <p>{movie.overview}</p>
                             <p>Release Date: {movie.release_date}</p>
+                            {/* Link to the movie's TMDB page */}
+                            <a
+                                href={`https://www.themoviedb.org/movie/${movie.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                More Info
+                            </a>
+                            {movie.poster_path && (
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                    alt={movie.title}
+                                />
+                            )}
                         </div>
                     ))
                 ) : (
-                    !error && <p>No movies found</p>
+                    <p>No movies found</p>
                 )}
             </div>
         </div>
