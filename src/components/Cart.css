@@ -1,0 +1,97 @@
+.cart-container {
+    padding: 10px;
+    max-width: 1200px;
+    margin: auto; /* Center the container horizontally */
+}
+
+.cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+    justify-content: center; /* Center items horizontally */
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9; /* Background color for each item */
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding inside each item */
+    width: 200px; /* Fixed width for each item */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow */
+    justify-content: space-between;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-item-img {
+    width: 100px; /* Adjust to match your design */
+    height: 100px; /* Adjust to match your design */
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+}
+
+.cart-item h3,
+.cart-item p {
+    margin: 0;
+    padding: 0;
+}
+
+.cart-item h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.cart-item p {
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.cart-item button {
+    margin-top: auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.cart-item button:hover {
+    background-color: #0056b3;
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.checkout-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.checkout-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+    background-color: #218838;
+}
