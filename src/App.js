@@ -10,12 +10,10 @@ import './App.css';
 
 function App() {
     const [cartItems, setCartItems] = useState(() => {
-        // Load initial cartItems from localStorage if available
         const savedCart = localStorage.getItem('cartItems');
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
-    // Save cartItems to localStorage whenever they change
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }, [cartItems]);
@@ -38,6 +36,21 @@ function App() {
     const clearSelections = () => {
         setCartItems([]);
     };
+
+    useEffect(() => {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    }, []);
 
     return (
         <Router>
